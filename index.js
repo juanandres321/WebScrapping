@@ -11,9 +11,18 @@ chromium.launch({ headless: false }).then(browser => {
                 .then(() => page.click('#filter_end_date'))
                 .then(() => page.fill('#filter_end_date', '2024-09-20'))
                 .then(() => page.waitForTimeout(1050))
-                .then(() => page.type('#filter_terms', 'Filtro', { delay: 102 }))
+                .then(() => page.type('#filter_terms', 'A', { delay: 102 }))
                 .then(() => page.waitForTimeout(3240))
-                .then(() => browser.close());
+                .then(() => page.waitForSelector('a.leading-6.font-bold'))
+                .then(() => page.$$eval('a.leading-6.font-bold', links => {
+                    return links.map(link => ({
+                        text: link.innerText,    
+                        href: link.href       
+                    }));
+                }))
+                .then(linksArray => {
+                    console.log('Enlaces encontrados:', linksArray);
+                });
         });
     });
 }).catch(error => {
