@@ -1,11 +1,14 @@
 {
   "name": "buscarnormas",
   "version": "1.0.0",
+  "license": "MIT",
   "main": "app.js",
   "bin": "app.js",
+  "scripts": {
+    "start": "node app.js"
+  },
   "dependencies": {
     "express": "^4.21.0",
-    "node-hide-console-window": "^2.2.0",
     "playwright": "^1.57.0"
   },
   "pkg": {
